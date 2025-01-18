@@ -1,0 +1,251 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+Student-Info | Edulink
+{% endblock title %}
+{% block content %}
+{% block extra_css %}
+<style>
+
+
+    /* Card Styling */
+    .card {
+        background-color: #001f3f;
+        /* Dark blue moon color */
+        border: 2px solid #007BFF;
+        /* Glowing star color */
+        border-radius: 8px;
+        animation: glow 1.5s infinite alternate;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Glow Animation */
+    @keyframes glow {
+        0% {
+            border-color: #80d0ff;
+            box-shadow: 0 0 4px #80d0ff;
+        }
+
+        100% {
+            border-color: #007BFF;
+            box-shadow: 0 0 7px #007BFF;
+        }
+    }
+
+    .card-header {
+        text-align: center;
+    }
+
+    .card-header h4 {
+        color: #80d0ff;
+        margin: 0;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: green;
+    }
+
+    .back:hover {
+        background-color: slategrey;
+        color: white;
+    }
+</style>
+{% endblock extra_css %}
+
+
+<!-- Staff Container -->
+<div id="mainContent" class="main-content container-fluid mt-5 py-5">
+    <div class="row d-flex justify-content-center mt-3">
+        <div class="col-sm-12 col-md-10 ">
+            <div class="card">
+                <div class="card-header mb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Back Button -->
+                        <a href="{% url 'student_list' %}" class="btn btn-secondary mt-5 rounded-circle">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        
+                        <!-- Centered Image -->
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ stud.image.url }}" alt="Profile Image" class="rounded-circle border border-primary shadow"
+                                 style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        
+                        <!-- Update Button -->
+                        <a href="{% url 'student_update' stud.id %}" class="btn btn-primary mt-5">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Centered Image and Update Button -->
+
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" value="{{ stud.f_name }}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" value="{{ stud.l_name }}"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Gender</label>
+                                <input type="email" class="form-control" value="{{ stud.gender }}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Date of birth</label>
+                                <input type="date" class="form-control"
+                                    value="{{ stud.DoB|date:'Y-m-d' }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Blood Group</label>
+                                <input type="text" class="form-control" value="{{ stud.blood_group }}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Register No</label>
+                                <input type="text" class="form-control" value="{{ stud.register_no }}"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Standard</label>
+                                <input type="text" class="form-control" value="{{ stud.standard }}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Section</label>
+                                <input type="text" class="form-control" value="{{ stud.section }}"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Father Name</label>
+                                <input type="text" class="form-control" value="{{ stud.father_name }}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Mother Name</label>
+                                <input type="text" class="form-control" value="{{ stud.mother_name }}"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Father Phone</label>
+                                <input type="tel" class="form-control" value="{{ stud.father_phone }}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Mother Phone</label>
+                                <input type="tel" class="form-control" value="{{ stud.mother_phone }}"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Father Occupation</label>
+                                <input type="text" class="form-control"
+                                    value="{{ stud.father_occupation }}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Mother Occupation</label>
+                                <input type="text" class="form-control"
+                                    value="{{ stud.mother_occupation }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" value="{{ stud.address }}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" value="{{ stud.city }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">State</label>
+                                <input type="text" class="form-control" value="{{ stud.state }}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Pin Code</label>
+                                <input type="text" class="form-control" value="{{ stud.pin_code }}"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,115 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+Assignment-List | Edulink
+{% endblock title %}
+{% block content %}
+<!--  extra css for page background -->
+{% block extra_css %}
+<style>
+  /* Card Styling */
+  .card {
+    background-color: #001f3f;
+    /* Dark blue moon color */
+    border: 2px solid #007BFF;
+    /* Glowing star color */
+    border-radius: 8px;
+    animation: glow 1.5s infinite alternate;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Glow Animation */
+@keyframes glow {
+    0% {
+        border-color: #80d0ff;
+        box-shadow: 0 0 4px #80d0ff;
+    }
+
+    100% {
+        border-color: #007BFF;
+        box-shadow: 0 0 7px #007BFF;
+    }
+}
+
+.card-header {
+    color: #80d0ff !important;
+    /* Header color */
+    margin: 0;
+}
+</style>
+{% endblock extra_css %}
+<br><br><br>
+<section class="mt-5">
+    <div id="mainContent" class="main-content container-fluid mt-5">
+        <div class="card text-light ">
+            <div class="card-body">
+                <div class="row">
+                    <!-- Header -->
+                    <div class="card-header my-2">
+                        <div class="d-flex justify-content-between align-items-center ">
+                            <!-- Back Button -->
+                            <a href="{% url 'dashboard' %}" class="btn btn-secondary  rounded-circle">
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
+                            
+                          <h4 class="text-uppercase">Assignment List</h4>
+                            <!-- Update Button -->
+                            <a href="{% url 'home' %}" class="btn btn-primary ">
+                                <i class="fas fa-home"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- breadcrumbs 
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item me-2"><a href="{% url 'home' %}">Home</a></li>
+                            <span class="text-warning">/</span>
+                            <li class="breadcrumb-item ms-2"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        </ol>
+                    </nav> -->
+                    <!--end breadcrumbs -->
+                    <div class="table-responsive mt-4">
+                        <table class="table table-striped ">
+                            <thead class="table-light text-dark">
+                                <tr>
+                                    <th class="">Subject</th>
+                                    <th class="">Title</th>
+                                    <th class="">Description</th>
+                                    <th class="">Due_Date</th>
+                                    <th class="">Asigned By</th>
+                                    <th class="">Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for assignment in assignments %}
+                                <tr class="text-light">
+                                    <td>
+                                        <p class="fw-normal mb-1">{{ assignment.subject }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="fw-normal mb-1">{{ assignment.title }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-light">{{ assignment.description }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-warning">{{ assignment.due_date }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-light">{{ assignment.created_by.username }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-light">{{ assignment.created_at }}</p>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

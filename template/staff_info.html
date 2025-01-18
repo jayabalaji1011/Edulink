@@ -1,0 +1,184 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+Staff-Info | Edulink
+{% endblock title %}
+{% block content %}
+{% block extra_css %}
+<style>
+    /* Card Styling */
+    .card {
+        background-color: #001f3f;
+        border: 2px solid #007BFF;
+        border-radius: 8px;
+        animation: glow 1.5s infinite alternate;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Glow Animation */
+    @keyframes glow {
+        0% {
+            border-color: #80d0ff;
+            box-shadow: 0 0 4px #80d0ff;
+        }
+        100% {
+            border-color: #007BFF;
+            box-shadow: 0 0 7px #007BFF;
+        }
+    }
+
+
+    .card-header {
+        text-align: center;
+    }
+
+    .card-header h4 {
+        color: #80d0ff;
+        margin: 0;
+    }
+
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: green;
+    }
+</style>
+{% endblock extra_css %}
+
+<!-- Staff Container -->
+<div id="mainContent" class="main-content container-fluid mt-5 py-5">
+    <div class="row d-flex justify-content-center mt-3">
+        <div class="col-sm-12 col-md-10 ">
+           
+
+            <!-- Card Wrapper -->
+            <div class="card">
+                <div class="card-header mb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Back Button -->
+                        <a href="{% url 'staff_list' %}" class="btn btn-secondary mt-5 rounded-circle">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        
+                        <!-- Centered Image -->
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ staff.image.url }}" alt="Profile Image" class="rounded-circle border border-primary shadow"
+                                 style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        
+                        <!-- Update Button -->
+                        <a href="{% url 'staff_update' staff.id %}" class="btn btn-primary mt-5">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Centered Image and Update Button -->
+
+                    <!-- Personal Details -->
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="f_name">First Name:</label>
+                            <input type="text" class="form-control" value="{{ staff.f_name }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="l_name">Last Name:</label>
+                            <input type="text" class="form-control" value="{{ staff.l_name }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="gender">Gender:</label>
+                            <input type="text" class="form-control" value="{{ staff.gender }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="DoB">Date of Birth:</label>
+                            <input type="text" class="form-control" value="{{ staff.DoB }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="blood_group">Blood Group:</label>
+                            <input type="text" class="form-control" value="{{ staff.blood_group }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="married_status">Married Status:</label>
+                            <input type="text" class="form-control" value="{{ staff.married_status }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="phone_no">Phone No:</label>
+                            <input type="text" class="form-control" value="{{ staff.phone_no }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">Email:</label>
+                            <input type="text" class="form-control" value="{{ staff.email }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="father_name">Father:</label>
+                            <input type="text" class="form-control" value="{{ staff.father_name }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="father_phone">Father Phone:</label>
+                            <input type="text" class="form-control" value="{{ staff.father_phone }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="subject">Subject:</label>
+                            <input type="text" class="form-control" value="{{ staff.subject }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="position">Staff Postion:</label>
+                            <input type="text" class="form-control" value="{{ staff.position }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="qualification">Qualification:</label>
+                            <input type="text" class="form-control" value="{{ staff.qualification }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="experience">Experience:</label>
+                            <input type="text" class="form-control" value="{{ staff.experience }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="address">Address:</label>
+                            <input type="text" class="form-control" value="{{ staff.address }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="city">City:</label>
+                            <input type="text" class="form-control" value="{{ staff.city }}" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="state">State:</label>
+                            <input type="text" class="form-control" value="{{ staff.state }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="pin_code">Pin Code:</label>
+                            <input type="text" class="form-control" value="{{ staff.pin_code }}" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

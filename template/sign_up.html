@@ -1,0 +1,174 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+User-SignUp | Edulink
+{% endblock title %}
+
+{% block content %}
+{% block extra_css %}
+<style>
+    /* Card Styling */
+    .card {
+        background-color: #001f3f;
+        /* Dark blue moon color */
+        border: 2px solid #007BFF;
+        /* Glowing star color */
+        border-radius: 8px;
+        animation: glow 1.5s infinite alternate;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Glow Animation */
+    @keyframes glow {
+        0% {
+            border-color: #80d0ff;
+            box-shadow: 0 0 4px #80d0ff;
+        }
+
+        100% {
+            border-color: #007BFF;
+            box-shadow: 0 0 7px #007BFF;
+        }
+    }
+
+    .card-header {
+        color: #80d0ff !important;
+        margin: 0;
+    }
+
+    /* Login link styling */
+    .login-link {
+        font-weight: bold;
+        color: #007BFF;
+        text-decoration: none;
+    }
+
+    .login-link:hover {
+        color: rgb(255, 81, 0) !important;
+    }
+
+    /* Responsive image */
+    .signup-image {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Default card spacing */
+    .signup-card {
+        margin: 0 auto;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+        /* Default padding */
+    }
+
+    /* Mobile styles */
+    @media (max-width: 576px) {
+        .signup-card {
+            margin-top: 20%;
+            margin-bottom: 2%;
+        }
+
+        .signup-image {
+            height: 130px;
+            /* Fixed image height for small screens */
+            margin-bottom: 10px;
+        }
+
+        .card-body {
+            padding: 1rem;
+            /* Compact padding */
+        }
+    }
+
+    /* Tablet styles */
+    @media (min-width: 576px) and (max-width: 991px) {
+        .signup-card {
+            margin-top: 18%;
+            /* Adjusted margin for tablets */
+            margin-bottom: 2%;
+            width: 90%;
+        }
+
+        .signup-image {
+            height: 180px;
+            /* Slightly larger image for tablets */
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            /* Balanced padding */
+        }
+    }
+
+    /* Desktop styles */
+    @media (min-width: 992px) {
+        .signup-card {
+            margin-top: 8%;
+            /* Consistent spacing for desktops */
+            margin-bottom: 2%;
+            width: 80%;
+        }
+
+        .signup-image {
+            height: 100%;
+            /* Full height on desktops */
+        }
+
+        .card-body {
+            padding: 2rem;
+            /* Spacious padding for large screens */
+        }
+    }
+</style>
+
+{% endblock extra_css %}
+
+<div class="container">
+    <div class="card signup-card">
+        <h4 class="card-header py-2 text-center text-uppercase">Sign Up</h4>
+        <div class="row g-0">
+            <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                <img src="{% static 'images/sign_in.png' %}" alt="Sign Up" class="signup-image img-fluid">
+            </div>
+            <div class="col-lg-6">
+                <div class="card-body">
+                    <form method="POST" action="{% url 'sign_up' %}">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label for="user_type" class="form-label">User-Type</label>
+                            {{ form.user_type }}
+                        </div>
+                        <div class="mb-2">
+                            <label for="username" class="form-label">Username</label>
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-2">
+                            <label for="email" class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-2">
+                            <label for="password" class="form-label">Password</label>
+                            {{ form.password }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="c_password" class="form-label">Confirm Password</label>
+                            {{ form.c_password }}
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                        <p class="mt-2 text-center text-light">
+                            Already have an account? <a class="login-link" href="{% url 'sign_in' %}">Login</a>
+                        </p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

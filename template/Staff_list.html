@@ -1,0 +1,146 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Staff-List | Edulink{% endblock title %}
+{% block content %}
+{% block extra_css %}
+<style>
+    button:hover {
+        color: rgb(255, 81, 0) !important;
+    }
+
+     /* Card Styling */
+     .card {
+        background-color: #001f3f;
+        /* Dark blue moon color */
+        border: 2px solid #007BFF;
+        /* Glowing star color */
+        border-radius: 2px;
+        animation: glow 1.5s infinite alternate;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        padding:20px;
+    }
+
+    /* Glow Animation */
+    @keyframes glow {
+        0% {
+            border-color: #80d0ff;
+            box-shadow: 0 0 4px #80d0ff;
+        }
+
+        100% {
+            border-color: #007BFF;
+            box-shadow: 0 0 7px #007BFF;
+        }
+    }
+
+    .card-header {
+        color: #80d0ff !important;
+        /* Header color */
+        margin: 0;
+    }
+    .card-body {
+        background-color: #001f3f;
+    }
+
+
+</style>
+{% endblock extra_css %}
+
+
+<div id="mainContent" class="main-content container-fluid mt-5 py-5">
+    <div class="row d-flex justify-content-center mt-3">
+        <div class="col-sm-12 col-md-10 ">
+           
+
+            <!-- Card Wrapper -->
+            <div class="card ">
+                
+                <!-- Card Header -->
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Back Button -->
+                        <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3 rounded-circle">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        
+                      <h4 class="text-uppercase">Staff List</h4>
+                        <!-- Update Button -->
+                        <a href="{% url 'home' %}" class="btn btn-primary mt-3">
+                            <i class="fas fa-home"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body">
+
+                    <!-- Search Bar -->
+                    <div class="d-flex justify-content-center mb-3">
+                        <form method="get" action="" style="width: 50%; max-width: 310px;">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control form-control-lg"
+                                    placeholder="Search staff..." aria-label="Search" aria-describedby="search-btn"
+                                    value="{{ request.GET.search }}">
+                                <button class="btn btn-outline-secondary btn-lg" type="submit" id="search-btn">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Back Button (only visible if search results are shown) -->
+                    {% if request.GET.search %}
+                    <div class="d-flex justify-content-center mb-3">
+                        <a class="btn btn-secondary btn-sm" href="">
+                            <i class="bi bi-arrow-left-circle me-2"></i>Back
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    <!-- Table -->
+                    <div class="table-responsive">
+                        {% if staff %}
+                        <table class="table table-striped ">
+                            <thead class="table-light text-dark">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Gender</th>
+                                    <th>Phone No</th>
+                                    <th>Subject</th>
+                                    <th>Blood Group</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for staf in staff %}
+                                <tr class="text-light ">
+                                    <td>{{ staf.f_name }}</td>
+                                    <td>{{ staf.gender }}</td>
+                                    <td>{{ staf.phone_no }}</td>
+                                    <td>{{ staf.subject }}</td>
+                                    <td>{{ staf.blood_group }}</td>
+                                    <td>
+                                        <!-- Update and Delete Buttons -->
+                                        <div class="d-flex justify-content-center">
+                                            <form method="get" action="{% url 'staff_info' staf.id %}" class="mb-0">
+                                                <button type="submit" class="btn btn-sm btn-border-none" style="color:#007BFF;">
+                                                    <i class="bi bi-eye-fill"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <p class="text-center text-light">No staff found.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

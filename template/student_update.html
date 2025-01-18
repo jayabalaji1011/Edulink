@@ -1,0 +1,205 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+Student-Update | Edulink
+{% endblock title %}
+{% block content %}
+{% block extra_css %}
+<style>
+
+
+    /* Card Styling */
+    .card {
+        background-color: #001f3f;
+        /* Dark blue moon color */
+        border: 2px solid #007BFF;
+        /* Glowing star color */
+        border-radius: 8px;
+        animation: glow 1.5s infinite alternate;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Glow Animation */
+    @keyframes glow {
+        0% {
+            border-color: #80d0ff;
+            box-shadow: 0 0 4px #80d0ff;
+        }
+
+        100% {
+            border-color: #007BFF;
+            box-shadow: 0 0 7px #007BFF;
+        }
+    }
+
+    .card-header {
+        color: #80d0ff !important;
+        /* Header color */
+        margin: 0;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: green;
+    }
+</style>
+{% endblock extra_css %}
+
+
+<!-- Form Container -->
+<div id="mainContent" class="main-content container-fluid mt-5 py-5">
+    <div class="row d-flex justify-content-center mt-3">
+        <div class="col-sm-12 col-md-10 ">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Back Button -->
+                        <a href="{% url 'student_list' %}" class="btn btn-secondary mt-3 rounded-circle">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        
+                      <h4 class="text-uppercase">Update Info</h4>
+                        <!-- Update Button -->
+                        <a href="{% url 'home' %}" class="btn btn-primary mt-3">
+                            <i class="fas fa-home"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'student_update' stud.id %}">
+                        {% csrf_token %}
+                       
+
+                        <!-- Personal Details -->
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="f_name">First Name:</label>
+                                {{ form.f_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="l_name">Last Name:</label>
+                                {{ form.l_name }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="gender">Gender:</label>
+                                {{ form.gender }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="DoB">Date of Birth:</label>
+                                {{ form.DoB }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="blood_group">Blood Group:</label>
+                                {{ form.blood_group }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="register_no">Register No:</label>
+                                {{ form.register_no }}
+                            </div>
+                        </div>
+
+                        <!-- Academic Details -->
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="standard">Standard:</label>
+                                {{ form.standard }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="section">Section:</label>
+                                {{ form.section }}
+                            </div>
+                        </div>
+
+                        <!-- Parent Details -->
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="father_name">Father's Name:</label>
+                                {{ form.father_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mother_name">Mother's Name:</label>
+                                {{ form.mother_name }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="father_occupation">Father's Occupation:</label>
+                                {{ form.father_occupation }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mother_occupation">Mother's Occupation:</label>
+                                {{ form.mother_occupation }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="father_phone">Father's Phone:</label>
+                                {{ form.father_phone }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mother_phone">Mother's Phone:</label>
+                                {{ form.mother_phone }}
+                            </div>
+                        </div>
+
+                        <!-- Contact Details -->
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="address">Address:</label>
+                                {{ form.address }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="city">City:</label>
+                                {{ form.city }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="state">State:</label>
+                                {{ form.state }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pin_code">Pin Code:</label>
+                                {{ form.pin_code }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="image">Upload Image:</label>
+                                {{ form.image }}
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="save mt-4" style="text-align: center;">
+                            <button type="submit">
+                                <i class="fas fa-save me-1"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

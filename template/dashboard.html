@@ -1,0 +1,229 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+Dashboard | Assignment
+{% endblock title %}
+
+{% block content %}
+<!--  extra css for page background -->
+{% block extra_css %}
+<style>
+    body {
+        background-color: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+
+    .card {
+        background-color: #001f3f;
+        /* Dark blue moon color */
+        border: 1px solid #007BFF;
+        /* Glowing star color */
+        border-radius: 8px;
+        animation: glow 1.5s infinite alternate;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Glow Animation */
+    @keyframes glow {
+        0% {
+            border-color: #80d0ff;
+            box-shadow: 0 0 1px #80d0ff;
+        }
+
+        100% {
+            border-color: #007BFF;
+            box-shadow: 0 0 2px #007BFF;
+        }
+    }
+    .User{
+        color: rgb(255, 81, 0) !important;
+    }
+    .txt{
+        text-decoration: none;
+    }
+
+    li{
+        background-color: transparent !important;
+
+    }
+</style>
+{% endblock extra_css %}
+
+
+
+<section class="mt-5">
+    <div class="container-fluid mt-5">
+        <div class="row d-flex justify-content-center">
+            <!-- Main Content -->
+            <div class="col-md-10 p-4">
+                <div class="display-6 text-light mb-4">
+                    Welcome, <span class="User text-uppercase fw-bold">{{ request.session.username }}</span>
+                </div>
+                <!-- Section for Staff -->
+                <div class="row">
+                    <!-- staff total -->
+                    <div class="col-sm-4 col-md-6 col-lg-4 mb-4">
+                        <div class="card p-3 text-center text-light 
+                        {% if user.userprofile.user_type == 'student' %}disabled{% endif %}">
+                            <i class="bi bi-people-fill fs-1 text-primary"></i>
+                            <h5 class="mt-2">Total Staffs</h5>
+                            <a href="{% url 'staff_list' %}" class="btn btn-primary rounded-pill dash-btn border-0 btn-sm 
+                        {% if request.session.user_type == 'student' %} disabled {% endif %}">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- student total -->
+                    <div class="col-sm-4 col-md-6 col-lg-4 mb-4">
+                        <div class="card p-3 text-center text-light  
+                        {% if request.session.user_type == 'student' %} disabled {% endif %}">
+                            <i class="bi bi-mortarboard-fill fs-1 text-primary"></i>
+                            <h5 class="mt-2">Total Students</h5>
+                            <a href="{% url 'student_list' %}" type="button" class="btn btn-primary rounded-pill dash-btn border-0 btn-sm 
+                                {% if request.session.user_type == 'student' %} disabled {% endif %}">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                 
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- assignment total -->
+                    <div class="col-sm-4 col-md-6 col-lg-4 mb-4">
+                        <div class="card p-3 text-center text-light">
+                            <i class="bi bi-file-text fs-1 text-primary"></i>
+                            <h5 class="mt-2">Total Assignments</h5>
+                            <a href="{% url 'assignment_list' %}" type="button"
+                                class="btn btn-primary rounded-pill dash-btn border-0 btn-sm">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                            
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+             
+                <!-- Summary Cards -->
+                
+                    <div class="col-sm-4 col-md-6 col-lg-4 mb-4">
+                        <div class="card p-3 text-center text-light">
+                            <i class="bi bi-binoculars-fill fs-1 text-success"></i>
+                            <h5 class="mt-2">View Assignments</h5>
+                            <a href="{% url 'student_assignments' %}" type="button" 
+                            class="btn btn-primary rounded-pill dash-btn border-0 btn-sm">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                    4
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-md-6 col-lg-4 mb-4">
+                        <div class="card p-3 text-center text-light">
+                            <i class="bi bi-clock fs-1 text-danger"></i>
+                            <h5 class="mt-2">Pending Assignments</h5>
+                            <a href="#" type="button" class="btn btn-primary rounded-pill dash-btn border-0 btn-sm">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                    5
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-md-6 col-lg-4 mb-4">
+                        <div class="card p-3 text-center text-light">
+                            <i class="bi bi-eye fs-1 text-success"></i>
+                            <h5 class="mt-2">Submitted Assignments</h5>
+                            <a href="#" type="button" class="btn btn-primary rounded-pill dash-btn border-0 btn-sm
+                            {% if request.session.user_type == 'student' %} disabled {% endif %}">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                    5
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Section for Staff -->
+                 {% if request.session.user_type == 'staff' %}
+                 <div class="mb-4">
+                    <div class="text-light fs-3 d-flex justify-content-center mb-3">
+                        Action<span class="text-primary fw-bold">(Staff)</span>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'create_assignment' %}"
+                            class="btn btn-outline-primary border-2 rounded-pill me-2 {% if request.session.user_type == 'student' %} disabled {% endif %}">
+                            <i class="bi bi-plus-circle"></i> Create Assignment</a>
+                    </div>
+                </div>
+               {% endif %}
+
+                <!-- Recent Assignments -->
+                <div class="card p-3 mb-4 text-center text-light">
+                    <h4 class="mb-3 text-uppercase">Recent Assignments</h4>
+                    <ul class="list-group ">
+                        {% for assignment in recent_assignments %}
+                        <a href="#" class="txt">
+                            <li
+                            class="list-group-item text-light d-flex justify-content-between align-items-center">
+                            
+                            {{ assignment.subject }} - {{ assignment.title }}
+                            <span class="badge bg-danger rounded-pill">Due: {{ assignment.due_date }}</span>
+                        </li>
+                    </a>
+                        {% empty %}
+                        <li class="list-group-item text-dark text-center">No recent assignments available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- pie chart -->
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-4 col-md-8 col-lg-6 mb-4">
+                        <div class="card p-3 text-center text-light">
+                            <h5 class="mt-2">Data Overview</h5>
+                            <canvas id="pieChart1" style="max-height: 200px; margin: 20px auto;"></canvas>
+                            <div>
+                                <p class="mb-1"><strong>Students:</strong> {{ total_students }}</p>
+                                <p class="mb-1"><strong>Staff:</strong> {{ total_staff }}</p>
+                                <p class="mb-1"><strong>Assignments:</strong> {{ total_assignments }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+</div>
+</div>
+</div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var chartData = JSON.parse('{{ chart_data|escapejs }}');
+        var ctx = document.getElementById('pieChart1').getContext('2d');
+        var pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Students', 'Staff', 'Assignments'],
+                datasets: [{
+                    data: chartData,
+                    backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
+                    hoverBackgroundColor: ['#36A2EB', '#FF6384', '#FFCE56']
+                }]
+            }
+        });
+    });
+</script>
+
+
+{% endblock content %}

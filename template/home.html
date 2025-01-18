@@ -1,0 +1,197 @@
+{% load static %}
+
+{% block title %}
+Home | Edulink
+{% endblock title %}
+
+{% block content %}
+{% block extra_css %}
+ <style>
+        /* Leadership Section Styles */
+        #leadership h2 {
+            color: #007bff; /* Primary blue for the title */
+        }
+        h6.card-title{
+            color: rgb(255, 81, 0) !important;
+        }
+        .card.lead{
+            background-color: #001f3f;
+        }     
+        
+
+        .card {
+            border: none; /* Remove default card border */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+        }
+
+        .card-header {
+            background-color: transparent; /* Transparent background */
+            padding: 20px; /* Add spacing around the image */
+        }
+
+        .card-header img {
+            height: 190px;
+            width: auto;
+            border-radius: 50%; /* Make the image circular */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow to the image */
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .card-body {
+            font-size: 0.95rem;
+            color: #333; /* Dark text color */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 767px) {
+            .card-header img {
+                height: 150px; /* Reduce image size for smaller screens */
+            }
+
+            .card-title {
+                font-size: 1rem; /* Adjust title size for smaller screens */
+            }
+
+            .card-body {
+                font-size: 0.9rem; /* Adjust body text size */
+            }
+        }
+    </style>
+
+{% endblock extra_css %}
+
+<!-- Hero Section -->
+<header class="mt-5 hero d-flex align-items-center justify-content-center text-white text-center">
+    <div class="container mt-5">
+        <h1 class="display-4 fw-bold ">
+            <i class="bi bi-book-half me-2 "></i> Edulink
+        </h1>
+        <h4 class="">Your comprehensive school management solution.</h4><br>
+        <a href="#features" class="btn btn-primary btn-lg ">Learn More</a>
+    </div>
+</header>
+
+<!-- Features Section -->
+<section id="features" class=" mb-2">
+    <div class="container mt-4">
+        <h2 class="text-center">Features</h2>
+        <div class="row mt-4 text-dark ">
+            <div class="col-md-12 col-lg-4 mb-3">
+                <div class="card text-center sch">
+                    <div class="card-body">
+                        <h5 class="card-title">Student Management</h5>
+                        <p class="card-text">Easily manage student records, enrollment, and progress tracking.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 mb-3">
+                <div class="card text-center sch">
+                    <div class="card-body">
+                        <h5 class="card-title">Staff Management</h5>
+                        <p class="card-text">Organize and manage staff details and schedules seamlessly.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 mb-0">
+                <div class="card text-center sch">
+                    <div class="card-body">
+                        <h5 class="card-title">Performance</h5>
+                        <p class="card-text">Monitor academic performance and generate insightful reports.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Rows Section -->
+<section id="image-rows" class="mt-4">
+    <div class="container">
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6">
+                <img src="{% static 'images/class.jpg' %}" alt="Students" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+                <h5 class="text-primary">Our Students</h5>
+                <p>Our students are at the heart of everything we do, receiving the best education and support. We celebrate diversity, ensuring that every student feels valued and included. Our educational approach encourages critical thinking, creativity, and a love for learning, preparing students for their future endeavors.</p>
+            </div>
+        </div>
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6 order-md-2">
+                <img src="{% static 'images/class-tech.jpg' %}" alt="Classroom" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6 order-md-1">
+                <h5 class="text-primary">Classroom</h5>
+                <p>Our classrooms are equipped with the latest technology and resources for effective learning. Each classroom fosters an interactive and collaborative atmosphere, where students can engage with both peers and educators.</p>
+            </div>
+        </div>
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6">
+                <img src="{% static 'images/staff2.jpg' %}" alt="Staff" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+                <h5 class="text-primary">Our Staff</h5>
+                <p>Dedicated staff members committed to providing quality education. Our highly qualified faculty are passionate about teaching and mentoring, ensuring that every student receives personalized attention and support.</p>
+            </div>
+        </div>
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6 order-md-2">
+                <img src="{% static 'images/campus.jpg' %}" alt="School" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6 order-md-1">
+                <h5 class="text-primary">Campus</h5>
+                <p>Explore our state-of-the-art facilities designed for optimal learning. Our campus features well-equipped laboratories, libraries, and recreational areas that cater to a wide range of academic and extracurricular activities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Leadership Section -->
+<section id="leadership" class="mt-4">
+    <div class="container text-center">
+        <h2 class="mt-1 mb-3 text-primary">Our Leadership</h2>
+        <div class="row text-dark">
+            <div class="col-md-4 mb-4 d-flex justify-content-center">
+                <div class="card text-center lead">
+                    <div class="card-header"><img src="{% static 'images/chairman.png' %}" alt="Chairman" class="img-fluid mb-3" style="height:190px; width:auto;"></div>
+                    <h6 class="card-title mt-2 mb-0"><b>Chairman: John Doe</b></h6>
+                    <div class="card-body">
+                        <p class="card-text text-light">Our chairman leads with vision and commitment to excellence in education.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 d-flex justify-content-center">
+                <div class="card text-center lead">
+                    <div class="card-header"><img src="{% static 'images/founder2.png' %}" alt="Founder" class="img-fluid mb-3" style="height:190px; width:auto;"></div>
+                    <h6 class="card-title mt-2 mb-0"><b>Founder: Jane Smith</b></h6>
+                    <div class="card-body">
+                        <p class="card-text text-light">The founder established our school with the goal of empowering students.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 d-flex justify-content-center">
+                <div class="card text-center lead">
+                    <div class="card-header"><img src="{% static 'images/princ.png' %}" alt="Principal" class="img-fluid mb-3" style="height:190px; width:auto;"></div>
+                    <h6 class="card-title mt-2 mb-0"><b>Principal: Emily</b> </h6>
+                    <div class="card-body">
+                        <p class="card-text text-light">Our principal ensures academic excellence and a supportive environment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

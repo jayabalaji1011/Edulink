@@ -1,0 +1,38 @@
+
+/* Gradient night mode background with stars and moon effect */
+
+
+
+
+.bd {
+    background: linear-gradient(180deg, #001524, #001524, #001524, #001524); /* Slight black touch in gradient */
+    min-height: 100vh; /* Allow the height to expand */
+    overflow: auto; /* Enable scrolling when content overflows */
+    position: relative;
+    color: white;
+}
+
+
+
+
+
+/* Star styling */
+.star {
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    animation: twinkle 1.5s infinite alternate;
+}
+
+
+
+/* Random stars */
+.star:nth-child(2) { top: 15%; left: 20%; }
+.star:nth-child(3) { top: 30%; left: 70%; }
+.star:nth-child(4) { top: 51%; left: 40%; }
+.star:nth-child(5) { top: 70%; left: 80%; }
+.star:nth-child(6) { top: 85%; left: 15%; }
+
+
