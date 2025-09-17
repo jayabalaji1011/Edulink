@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+Create-Assignment | Assignment
+{% endblock title %}
+
+{% block content %}
+<!--  extra css for page background -->
+{% block extra_css %}
+<style>
+
+</style>
+{% endblock extra_css %}
+<br><br><br>
+<section class="mt-5">
+    <div id="mainContent" class="main-content container mt-5">
+        <div class="card bg-dark text-light">
+            <div class="card-header text-center mb-3">
+                <h2 class="d-flex justify-content-center fw-bold text-uppercase">Create assignment</h2>
+                <p class="text-white-50">Assignment for all students</p>
+            </div>
+            <!-- breadcrumbs -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb ms-5">
+                    <li class="breadcrumb-item me-2"><a href="{% url 'home' %}">Home</a></li>
+                    <span class="text-warning">/</span>
+                    <li class="breadcrumb-item ms-2"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                </ol>
+            </nav>
+            <div class="card-body">
+                <form method="POST" action="/create_assignment/">
+                    {% csrf_token %}
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="subject" class="form-label">Subject</label>
+                                {{ form.subject }}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="title" class="form-label">Title</label>
+                                {{ form.title }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="description" class="form-label">Description</label>
+                                {{ form.description }}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="due_date" class="form-label">Due Date</label>
+                                {{ form.due_date }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="students" class="form-label">Assign to Students</label>
+                                {{ form.students }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-5">
+                        <button type="submit" class="btn btn-outline-success rounded-pill"><i
+                                class="bi bi-floppy2-fill me-2"></i>Create
+                            Assignment</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

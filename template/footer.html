@@ -1,0 +1,107 @@
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<style>
+    /* Footer styles */
+    .footer {
+        background-color: #001524; /* Same as navbar */
+        color: #ffffff;
+        padding: 0.5rem 1rem; /* Reduced height */
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid #80d0ff; /* Same as navbar border */
+        box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1); /* Shadow at the top */
+        font-size: 0.9rem;
+        animation: glows 1.5s infinite alternate; /* Same glow animation */
+        margin-top: 10rem; /* Adds spacing between the footer and content */
+        position: relative; /* Allow positioning inside flexbox */
+        padding: 0.5rem 1rem;
+        margin-top: 5rem;
+    }
+
+    .footer a {
+        color: #80d0ff;
+        text-decoration: none;
+    }
+
+    .footer a:hover { /* Corrected selector */
+        color: rgb(255, 81, 0) !important; /* Hover effect similar to navbar */
+    }
+
+    /* Ensure body and html cover full height */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    /* Flexbox layout to ensure footer is at the bottom */
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        flex: 1; /* Allow content to take up available space */
+        overflow-y: auto; /* Allow scrolling in content */
+    }
+
+      /* Center the content of image rows on mobile */
+    @media (max-width: 767px) {
+        span{
+            font-size: x-small;
+        }
+      }
+
+</style>
+{% endblock extra_css %}
+
+<div class="content">
+    <!-- Your page content goes here -->
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row text-center text-md-start mt-3 mb-2">
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h5 class="text-info">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/home/" class="text-light text-decoration-none">Home</a></li>
+                    <li><a href="/about/" class="text-light text-decoration-none">About Us</a></li>
+                    <li><a href="/staff_list/" class="text-light text-decoration-none">Staff</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-md-4">
+                <h5 class="text-info">Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-envelope me-2"></i>Email: <a href="mailto:support@edulink.com" class="text-light text-decoration-none">support@edulink.com</a></li>
+                    <li><i class="bi bi-telephone me-2"></i>Phone: <a href="tel:+123456789" class="text-light text-decoration-none">+1 (234) 567-890</a></li>
+                    <li><i class="bi bi-geo-alt me-2"></i>123 EduLink St., City, Country</li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="col-md-4 text-center text-md-start">
+                <h5 class="text-info">Follow Us</h5>
+                <div>
+                    <a href="#" target="_blank" class="text-info fs-5 me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" target="_blank" class="text-info fs-5 me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" target="_blank" class="text-info fs-5 me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#" target="_blank" class="text-info fs-5"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center border-top pt-3 mt-3 mb-3">
+            <span>&copy; 2024 EduLink. All Rights Reserved. | 
+                <a href="/privacy/" class="text-info text-decoration-none">Privacy Policy</a> | 
+                <a href="/terms/" class="text-info text-decoration-none">Terms of Service</a>
+            </span>
+        </div>
+    </div>
+</footer>
+
+{% endblock content %}

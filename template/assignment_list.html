@@ -1,0 +1,77 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+Assignment-List | Edulink
+{% endblock title %}
+{% block content %}
+<!--  extra css for page background -->
+{% block extra_css %}
+<style>
+
+</style>
+{% endblock extra_css %}
+<br><br><br>
+<section class="mt-5">
+    <div id="mainContent" class="main-content container-fluid mt-5">
+        <div class="card text-light bg-dark">
+            <div class="card-body">
+                <div class="row">
+                    <!-- Header -->
+                    <div class="card-header text-center mb-3">
+                        <h3 class="fw-bold text-uppercase">assignment list</h3>
+                        <p class="text-white-50">To view the details of the Assignment</p>
+                    </div>
+
+                    <!-- breadcrumbs -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item me-2"><a href="{% url 'home' %}">Home</a></li>
+                            <span class="text-warning">/</span>
+                            <li class="breadcrumb-item ms-2"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        </ol>
+                    </nav>
+                    <!--end breadcrumbs -->
+                    <div class="table-responsive">
+                        <table class="table-dark table align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-info">Subject</th>
+                                    <th class="text-info">Title</th>
+                                    <th class="text-info">Description</th>
+                                    <th class="text-info">Due_Date</th>
+                                    <th class="text-info">Asigned By</th>
+                                    <th class="text-info">Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for assignment in assignments %}
+                                <tr>
+                                    <td>
+                                        <p class="fw-normal mb-1">{{ assignment.subject }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="fw-normal mb-1">{{ assignment.title }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-light">{{ assignment.description }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-warning">{{ assignment.due_date }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-light">{{ assignment.staff.username }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-light">{{ assignment.created_at }}</p>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

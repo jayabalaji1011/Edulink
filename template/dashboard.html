@@ -1,0 +1,143 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+Dashboard | Assignment
+{% endblock title %}
+
+{% block content %}
+<!--  extra css for page background -->
+{% block extra_css %}
+<style>
+    body {
+        background-color: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+</style>
+{% endblock extra_css %}
+
+
+
+<section class="mt-5">
+    <div class="container-fluid mt-5">
+        <div class="row d-flex justify-content-center">
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 p-4">
+                <div class="display-6 text-light mb-4">
+                    Welcome, <span class="text-primary text-uppercase fw-bold">{{ request.session.username }}</span>
+                </div>
+                <!-- Section for Staff -->
+                <div class="row">
+                    <!-- staff total -->
+                    <div class="col-sm-4 mb-4">
+                        <div class="card p-3 bg-dark text-center text-light 
+                        {% if user.userprofile.user_type == 'student' %}disabled{% endif %}">
+                            <i class="bi bi-people-fill fs-1 text-primary"></i>
+                            <h5 class="mt-2">Total Staffs</h5>
+                            <a href="{% url 'staff_list' %}" class="btn btn-primary rounded-pill dash-btn border-0 btn-sm 
+                        {% if request.session.user_type == 'student' %} disabled {% endif %}">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- student total -->
+                    <div class="col-sm-4 mb-4">
+                        <div class="card p-3 bg-dark text-center text-light  
+                        {% if request.session.user_type == 'student' %} disabled {% endif %}">
+                            <i class="bi bi-mortarboard-fill fs-1 text-primary"></i>
+                            <h5 class="mt-2">Total Students</h5>
+                            <a href="{% url 'student_list' %}" type="button" class="btn btn-primary rounded-pill dash-btn border-0 btn-sm 
+                                {% if request.session.user_type == 'student' %} disabled {% endif %}">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                 
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- assignment total -->
+                    <div class="col-sm-4 mb-4">
+                        <div class="card p-3 bg-dark text-center text-light">
+                            <i class="bi bi-file-text fs-1 text-primary"></i>
+                            <h5 class="mt-2">Total Assignments</h5>
+                            <a href="{% url 'assignment_list' %}" type="button"
+                                class="btn btn-primary rounded-pill dash-btn border-0 btn-sm">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                            
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Summary Cards -->
+                <div class="row">
+                    <div class="col-sm-4 mb-4">
+                        <div class="card p-3 bg-dark text-center text-light">
+                            <i class="bi bi-binoculars-fill fs-1 text-success"></i>
+                            <h5 class="mt-2">View Assignments</h5>
+                            <a href="" type="button" 
+                            class="btn btn-primary rounded-pill dash-btn border-0 btn-sm">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                    4
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 mb-4">
+                        <div class="card p-3 bg-dark text-center text-light">
+                            <i class="bi bi-clock fs-1 text-danger"></i>
+                            <h5 class="mt-2">Pending Assignments</h5>
+                            <a href="#" type="button" class="btn btn-primary rounded-pill dash-btn border-0 btn-sm">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                    5
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 mb-4">
+                        <div class="card p-3 bg-dark text-center text-light">
+                            <i class="bi bi-eye fs-1 text-success"></i>
+                            <h5 class="mt-2">View submitted work</h5>
+                            <a href="#" type="button" class="btn btn-primary rounded-pill dash-btn border-0 btn-sm
+                            {% if request.session.user_type == 'student' %} disabled {% endif %}">
+                                View <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6">
+                                    5
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+               
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var chartData = JSON.parse('{{ chart_data|safe }}');
+        var ctx = document.getElementById('pieChart1').getContext('2d');
+        var pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Students', 'Staff', 'Assignments'],
+                datasets: [{
+                    data: chartData,
+                    backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
+                    hoverBackgroundColor: ['#36A2EB', '#FF6384', '#FFCE56']
+                }]
+            }
+        });
+    });
+</script>
+{% endblock content %}
