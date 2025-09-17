@@ -14,3 +14,7 @@ Edulink is a web application designed to manage school staff and student informa
 - **Frontend:** HTML, CSS, JavaScript  
 - **Database:** SQLite (default with Django)  
 
+## Installation 1. **Clone the repository**
+bash
+git clone https://github.com/jayabalaji1011/Edulink.git
+cd Edulink
