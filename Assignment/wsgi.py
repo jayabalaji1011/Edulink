@@ -8,9 +8,13 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
 """
 
 import os
-
+import sys
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Assignment.settings')
 
+# Add your project path
+path = '/home/jayabalaji1011/assignment'
+if path not in sys.path:
+    sys.path.append(path)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Assignment.settings')
 application = get_wsgi_application()
