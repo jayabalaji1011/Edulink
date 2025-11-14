@@ -1,6 +1,6 @@
 # Edulink | School Management System
 
-## Description
+## Overview 
 Edulink is a web application designed to manage school staff and student information efficiently. It includes CRUD operations for both staff and students, assignment management, and user authentication.
 
 ## Features
